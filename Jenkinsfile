@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
-                ithCredentials([file(credentialsId: 'kubeconfig-file', variable: 'KUBECONFIG')]) {
+                withCredentials([file(credentialsId: 'kubeconfig-file', variable: 'KUBECONFIG')]) {
                     sh 'kubectl apply -f deployment.yaml --kubeconfig=$KUBECONFIG'
                 }
             }
